@@ -17,10 +17,10 @@ on:
 jobs:
   container:
     runs-on: ubuntu-latest
-    container: checkpoint/shiftleft:latest
+    #container: checkpoint/shiftleft:latest
     steps:
-      - name: Install latest git 
-        run: apk update && apk upgrade && apk add git
+      #- name: Install latest git 
+      #  run: apk update && apk upgrade && apk add git
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
@@ -29,4 +29,5 @@ jobs:
         env: 
           CHKP_CLOUDGUARD_ID: ${{ secrets.CHKP_CLOUDGUARD_ID }}
           CHKP_CLOUDGUARD_SECRET: ${{ secrets.CHKP_CLOUDGUARD_SECRET }}
-        run: shiftleft --version; mkdir tmp; shiftleft iac-assessment -p . -r -64 -d tmp
+        run: docker run --rm -e CHKP_CLOUDGUARD_ID -e CHKP_CLOUDGUARD_SECRET -v $PWD:$PWD -w $PWD checkpoint/shiftleft shiftleft image-scan -p . -r -64
+        #shiftleft --version; mkdir tmp; shiftleft iac-assessment -p . -r -64 -d tmp
