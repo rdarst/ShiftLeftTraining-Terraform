@@ -29,4 +29,4 @@ jobs:
         env: 
           CHKP_CLOUDGUARD_ID: ${{ secrets.CHKP_CLOUDGUARD_ID }}
           CHKP_CLOUDGUARD_SECRET: ${{ secrets.CHKP_CLOUDGUARD_SECRET }}
-        run: shiftleft --version; mkdir tmp; shiftleft iac-assessment -p . -r -64. -d tmp
+        run: shiftleft --version; mkdir tmp; shiftleft iac-assessment -p . -r -64 -d tmp
